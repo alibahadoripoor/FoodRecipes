@@ -29,6 +29,11 @@ final class RecipesListViewModel: ObservableObject{
         return RecipeCellViewModel(recipe: recipes[indexPath.item])
     }
     
+    func recipeDetailsViewController(for indexPath: IndexPath) -> RecipeDetailsViewController {
+        let viewModel = RecipeDetailsViewModel(recipe: recipes[indexPath.item])
+        return RecipeDetailsViewController.newInstance(with: viewModel)
+    }
+    
     private func fetchRecipes(){
         network.fetchAllRecipes { [weak self] result in
             DispatchQueue.main.async {
