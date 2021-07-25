@@ -76,4 +76,10 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource{
         
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let viewModel = viewModel else { return }
+        navigationController?.pushViewController(viewModel.recipeDetailsViewController(for: indexPath), animated: true)
+    }
 }
